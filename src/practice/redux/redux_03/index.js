@@ -1,12 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import App from './App'
 import { counter, addGun, removeGun, addGunAsync } from './index.reudx'
 import thunk from 'redux-thunk' // 修改action creator的书写方式
 
+const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : () => {}
 // applyMiddleware 中间件用thunk处理异步
-const store = createStore(counter, applyMiddleware(thunk))
+const store = createStore(counter, compose(
+  applyMiddleware(thunk),
+  reduxDevtools
+))
 
 function render() {
   ReactDOM.render( 
