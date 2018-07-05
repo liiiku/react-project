@@ -20,7 +20,6 @@ console.log(store.getState())
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-
       <Switch>
         <Route path="/login" exact component={Auth}></Route>
         <Route path="/dashboard" component={Dashboard}></Route>

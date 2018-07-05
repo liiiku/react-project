@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addGun, removeGun, addGunAsync } from './index.reudx'
 
 @connect(
-  // state属性放到props里面
+  // state属性放到props里面 因为合并了，所以需要用state.counter区分数据
   state => ({num: state.counter}),
   // 需要用的方法，放到props里面，自动dispatch
   { addGun, removeGun, addGunAsync }
