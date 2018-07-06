@@ -28,7 +28,7 @@ const User = mongoose.model('user', new mongoose.Schema({
 // })
 
 // 删除数据
-// User.remove({age: 23}, function(err, doc) {
+// User.remove({_id: '5b3f17220e5ce8ccb131666d'}, function(err, doc) {
 //   console.log(doc)
 // })
 
