@@ -8,6 +8,8 @@ import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import Auth from './Auth'
 import Dashboard from './Dashboard'
+import './config'
+import 'antd-mobile/dist/antd-mobile.css'
 
 const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : () => {}
 // applyMiddleware 中间件用thunk处理异步
@@ -20,7 +22,6 @@ console.log(store.getState())
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-
       <Switch>
         <Route path="/login" exact component={Auth}></Route>
         <Route path="/dashboard" component={Dashboard}></Route>
