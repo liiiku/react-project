@@ -1,5 +1,5 @@
-const ADD_GUN = '加机关枪'
-const REMOVE_GUN = '减机关枪'
+const ADD_GUN = 'ADD_GUN'
+const REMOVE_GUN = 'REMOVE_GUN'
 
 // reducer
 export function counter(state = 0, action) {
@@ -12,19 +12,22 @@ export function counter(state = 0, action) {
       return 10
   }
 }
-// action creator
-export function addGUN() {
-  return {type: ADD_GUN}
-}
-export function removeGUN() {
-  return {type: REMOVE_GUN}
-}
 
-// thunk的使用是为了修改action creator写的方式
+// action creator
+export function addGun() {
+  return { 
+    type: ADD_GUN 
+  }
+}
+export function removeGun() {
+  return {
+    type: REMOVE_GUN
+  }
+}
 export function addGunAsync() {
   return dispatch => {
     setTimeout(() => {
-      dispatch(addGUN())
+      dispatch(addGun()) // dispatch({type: ADD_GUN})
     }, 2000)
   }
 }
