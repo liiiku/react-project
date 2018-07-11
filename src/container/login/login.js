@@ -5,6 +5,11 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { login } from '../../redux/user.redux'
 
+/**
+ * 这里的user就是reducer.js中合并的user，也就是user.redux.js中export出来的user，这里面包含了所有的state，这才使得connect将state全部挂载到了props上面，类似于mapStatetoProps
+ * 只有这样了之后，才有了后面的this.props.redirectTo这样获取值的效果
+ * 因为是数据驱动的，所以页面跳转的控制也是由数据控制的，只要数据符合要求之后，就会做响应的跳转
+ */
 @connect(
   state => state.user,
   {login}

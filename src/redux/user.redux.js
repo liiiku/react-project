@@ -18,7 +18,6 @@ const initState = {
   isAuth: false,
   msg: '',
   user: '',
-  pwd: '',
   type: ''
 }
 
@@ -60,7 +59,8 @@ export function login({user, pwd}) {
   }
   return dispatch => {
     axios.post('/user/login', {user, pwd})
-      .then(res => {
+      .then(res => { // res.data是自动封装的一层 实际的data就是在server路由的时候，自己封装数据的，可以将server/user.js中自己封装的data变成data1就看出来变化了
+        console.log(64, res)
         if (res.status === 200 && res.data.code === 0) {
           dispatch(loginSuccess(res.data.data))
         } else {
