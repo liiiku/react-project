@@ -12,6 +12,21 @@ Router.get('/list', function(req, res) {
   })
 })
 
+Router.post('/update', function(req, res) {
+  const userid = req.cookies.userid
+  if (!userid) {
+    return res.json({code: 1})
+  }
+  const body = req.body
+  User.findByIdAndUpdate(userid, body, function(err, doc) {
+    const data = Object.assign({}, {
+      user: doc.user,
+      type: doc.type
+    }, body)
+    return res.json({code: 0, data})
+  })
+})
+
 Router.post('/login', function(req, res) {
   console.log(16, req.body)
   const {user, pwd} = req.body
@@ -34,8 +49,19 @@ Router.post('/register', function(req, res) {
       return res.json({code: 1, msg: '用户名重复'})
     }
 
-    const userModel = new User({user, type, pwd: md5Pwd(pwd)})
-    userModel.save(function(err, doc) {
+    // const userModel = new User({user, type, pwd: md5Pwd(pwd)})
+    // userModel.save(function(err, doc) {
+    //   if (err) {
+    //     return res.json({code: 1, msg: '后端出错了！'})
+    //   }
+    //   const { user, type, _id } = doc
+    //   res.cookie('userid', _id)
+    //   return res.json({code: 0, data: {user, type, _id}})
+    // })
+
+    // 用create没法获得用户的id，生成之后才有
+    User.create({user, type, pwd: md5Pwd(pwd)}, function(err, doc) {
+      console.log(49, doc)
       if (err) {
         return res.json({code: 1, msg: '后端出错了！'})
       }
@@ -43,14 +69,6 @@ Router.post('/register', function(req, res) {
       res.cookie('userid', _id)
       return res.json({code: 0, data: {user, type, _id}})
     })
-
-    // 用create没法获得用户的id，生成之后才有
-    // User.create({user, type, pwd: md5Pwd(pwd)}, function(err, doc) {
-    //   if (err) {
-    //     return res.json({code: 1, msg: '后端出错了！'})
-    //   }
-    //   return res.json({code: 0})
-    // })
   })
 })
 

@@ -27,7 +27,7 @@ class Register extends Component {
   }
   handleRegister() {
     this.props.register(this.state)
-    console.log(29, this.state)
+    console.log(30, this.state)
   }
   render() {
     const RadioItem = Radio.RadioItem

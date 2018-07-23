@@ -30,10 +30,10 @@ class AuthRoute extends React.Component {
             // 有登录信息的
             this.props.loadData(res.data.data)
           } else {
-            console.log(26, this.props.history) // undefined 因为AuthRoute不是路由组件，只是一个简单的组件，并没有操作路由的方法，怎么做呢？需要用到withRouter
+            console.log(33, this.props.history) // undefined 因为AuthRoute不是路由组件，只是一个简单的组件，并没有操作路由的方法，怎么做呢？需要用到withRouter
             this.props.history.push('/login') // 是否能访问其他页面，开关就在server/user.js中控制
           }
-          console.log(29, res.data)
+          console.log(36, res.data)
         }
       })
   }
